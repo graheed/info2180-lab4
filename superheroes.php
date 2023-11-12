@@ -64,10 +64,29 @@ $superheroes = [
   ], 
 ];
 
-?>
+$query = $_GET['query'];
+$query = htmlspecialchars($query);
 
-<ul>
-<?php foreach ($superheroes as $superhero): ?>
-  <li><?= $superhero['alias']; ?></li>
-<?php endforeach; ?>
-</ul>
+if ($query == '') {
+echo "<ul>";
+
+foreach ($superheroes as $superhero):
+  echo "<li>{$superhero['alias']}</li>";
+endforeach;
+
+echo "</ul>";
+} else {
+    $queryResult = array_filter($superheroes, function($hero) use ($query) {
+        return strcasecmp($hero['name'], $query) == 0 || strcasecmp($hero['alias'], $query) == 0;
+    });
+
+    if (count($queryResult) > 0) {
+        $hero = array_values($queryResult)[0];
+        echo "<h3>{$hero['alias']}</h3>";
+        echo "<h4>A.K.A {$hero['name']}</h4>";
+        echo "<p>{$hero['biography']}</p>";
+    } else {
+        echo "Superhero not found" ;
+    }
+}
+?>
