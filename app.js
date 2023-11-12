@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('searchButton').addEventListener('click', function() {
 
         var searchQuery = $('#search').val();
-        //searchQuery = encodeURIComponent(searchQuery);
+
         $.ajax({
             url: 'superheroes.php',
             type: 'get',

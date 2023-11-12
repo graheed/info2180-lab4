@@ -67,6 +67,8 @@ $superheroes = [
 $query = $_GET['query'];
 $query = htmlspecialchars($query);
 
+echo "<h1 id='result_heading'>Results</h1><hr>";
+
 if ($query == '') {
 echo "<ul>";
 
@@ -86,7 +88,7 @@ echo "</ul>";
         echo "<h4>A.K.A {$hero['name']}</h4>";
         echo "<p>{$hero['biography']}</p>";
     } else {
-        echo "Superhero not found" ;
+        echo "<p id='notFound'>Superhero not found</p>";
     }
 }
 ?>
